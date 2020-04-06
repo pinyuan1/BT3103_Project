@@ -3,6 +3,13 @@ import App from './App.vue'
 import VueResource from 'vue-resource'
 import Routes from './routes.js'
 
+
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+Vue.use(VueResource)
+
+
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 Vue.use(VueResource)
