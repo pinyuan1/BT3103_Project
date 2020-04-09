@@ -17,6 +17,7 @@ export default {
 </script>
 
 <style scoped>
+
 .footerStyle{
   /*   background:#f1dedb;*/
 
@@ -29,5 +30,7 @@ p{
     color: white;
     
 }
+
+
 
 </style>
