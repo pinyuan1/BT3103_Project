@@ -34,7 +34,13 @@ export default {
     },
     methods:{
         addTask (){
-            database.collection('tasks').add(this.task);
+            database.collection('tasks').add({
+                Name:this.task.Name,
+                Category:this.task.Category,
+                Description:this.task.Description,
+                Deadline:new Date(),
+                Links:this.task.Links
+            });
             this.task.Name="";
             this.task.Category="";
             this.task.Description="";
