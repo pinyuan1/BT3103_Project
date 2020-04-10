@@ -5,6 +5,7 @@
           <ul>
              <li><router-link to="/" exact>Login</router-link></li>
              <li><router-link to="/signup" exact>Signup</router-link></li>
+             <li><router-link to="/dashboard" exact>Dashboard</router-link></li>
           </ul>
         </nav>
   </div>
