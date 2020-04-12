@@ -78,11 +78,12 @@ export default {
 					databaseUser=doc.data()
 					if(this.user.name==databaseUser.name && this.user.password==databaseUser.password) {
 						alert("Login is successful! Have a wonderful experience with 404!");
+						this.$router.push({path:'/'});
 						successful=true;
 					}
 				})
-				if (successful==false) {
-					alert("Invalid username and password");
+				if (successful==false) {		
+					alert("Invalid username and password");			
 				}
 			});
 		}
@@ -91,7 +92,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 strong{
 	font-weight: 700;
 	font-size: 50px;

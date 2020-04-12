@@ -1,25 +1,25 @@
 <template>
   <div id="app">
-    <app-header v-bind:title="msg"></app-header>
+    <app-header></app-header>
     <router-view></router-view>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
-// import Login from './components/Login.vue'
-// import Signup from './components/Signup.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    'app-header':Header
-    // 'login':Login
+    'app-header': Header,
+    'app-footer': Footer,
   }
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
