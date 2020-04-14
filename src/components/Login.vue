@@ -1,5 +1,6 @@
 <template>
 <div>
+<!-- <home v-bind:username="user.name"></home> -->
 <head>
 <title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,10 +52,14 @@
 
 <script>
 import database from '../firebase.js'
+// import home from './Home.vue'
 addEventListener("load", function() {setTimeout(hideURLbar, 0);}, false); 
 function hideURLbar(){ window.scrollTo(0,1); }
 
 export default {
+	// components:{
+	// 	home
+	// },
     data() {
         return {
 			user:{
@@ -77,6 +82,7 @@ export default {
 				querySnapShot.forEach(doc=>{
 					databaseUser=doc.data()
 					if(this.user.name==databaseUser.name && this.user.password==databaseUser.password) {
+						this.$store.state.username=this.user.name;
 						alert("Login is successful! Have a wonderful experience with 404!");
 						this.$router.push({path:'/'});
 						successful=true;
