@@ -3,7 +3,7 @@
         <h1>{{title}}</h1>
         <nav>
             <ul>
-                <li><router-link to="/" exact v-html="home"></router-link></li>
+                <li><router-link to="/home" exact v-html="home"></router-link></li>
                 <li><router-link to="/dashboard" exact v-html="dashboard"></router-link></li>
             </ul>
         </nav>
