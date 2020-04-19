@@ -6,10 +6,10 @@ import Login from './components/Login.vue'
 import Signup from './components/Signup.vue'
 
 export default [
-    {path: '/', component: Home},
+    {path: '/', component: Login},
     {path: '/add', component: AddItem}, //change here
     {path: '/dashboard', component: Dashboard}, //change here
     {path: '/task/:id', component:Task},
-    {path: '/login', component: Login},
+    {path: '/home', component: Home},
     {path: '/signup', component: Signup}
 ]
