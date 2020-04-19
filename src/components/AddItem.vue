@@ -28,7 +28,7 @@ export default {
                 Category:'',
                 Description:'',
                 Deadline:new Date(),
-                Links:'',
+                Links:''
             },
         }
     },
@@ -39,7 +39,8 @@ export default {
                 Category:this.task.Category,
                 Description:this.task.Description,
                 Deadline:new Date(),
-                Links:this.task.Links
+                Links:this.task.Links,
+                Username:this.$store.state.username
             });
             this.task.Name="";
             this.task.Category="";
