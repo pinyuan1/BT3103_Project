@@ -4,16 +4,23 @@
         <form id="fm1">
         <label>Name</label>
         <input type="text" v-model.lazy="task.Name" required/>
-        <label>Category</label>
-        <input type="text" v-model.lazy="task.Category"/>
         <label>Description</label>
         <input type="text" v-model.lazy="task.Description" required/>
         <label>Deadline</label>
         <input type="date" v-model.lazy="task.Deadline" required/>
         <label>Link</label>
         <input type="text" v-model.lazy="task.Links" required/>
-        <button v-on:click.prevent="addTask">Add Task</button>
         </form>
+
+        <label for="category">Choose task's category:</label>
+        <select id="category" name="category" form="category" v-model.lazy="task.Category">
+            <option value="Academic">Academic</option>
+            <option value="Work">Work</option>
+            <option value="CCA">CCA</option>
+            <option value="Others">Others</option>
+        </select>
+
+        <button v-on:click.prevent="addTask">Add Task</button>
     </div>
 </template>
 
