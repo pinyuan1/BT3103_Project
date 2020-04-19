@@ -39,7 +39,7 @@ export default {
     fetchItems:function(){
       let task={}
       //Get all the items from DB
-      database.collection('tasks').orderBy('Deadline').get().then((querySnapShot)=>{
+      database.collection('tasks').where('Username','==',this.$store.state.username).orderBy('Deadline').get().then((querySnapShot)=>{
         //Loop through each item
         querySnapShot.forEach(doc=>{
             //console.log(doc.id+"==>"+doc.data())
