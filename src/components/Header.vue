@@ -14,7 +14,7 @@
 export default {
     data() {
         return {
-            title: 'Deadline Scheduler',
+            title: 'NUS Deadline Scheduler',
             home: '	&#127968;Homepage',
             dashboard: '&#128202;Dashboard'
         }
@@ -23,35 +23,49 @@ export default {
 </script>
 
 <style scoped>
-h1{
-    color: black;
-    font-size: 30px;
-    margin: -30px 0 20px 0;
-}
+/*
 nav{
-    background:#927397;
-    padding: 8px 0;
+    
+   background-color:aqua;
+   
     margin: 0 -8px;
+    background-image: url(Our-Work-Banner.png)
+}
+*/
+h1{
+    font-size: 50px;
+    margin-top:0px;
+    font-family: Helvetica;
+    position:relative; top:20px
 }
 .router-link-active{
-    color: #444;
+     
+    color: #3a4660;
     font-weight: bold;
     text-decoration: none;
+    font-family: Helvetica;
 }
 ul{
     list-style-type: none;
     text-align: right;
-    margin: 0;
-
 }
 li{
     display: inline-block;
-    margin: 0 10px;
     
 }
 li a{
-  font-size: 15px;
-  color:white;  
+  font-size: 20px;
+  color:#6B7A8F;  
+  font-weight: bold;
   text-decoration: none; 
+  font-family: Helvetica;
+}
+.headerStyle{
+font-size:30px;
+background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url(Our-Work-Banner.png);
+font-family: Helvetica;
+background-origin: inherit;
+ color:#3a4660;  
+ margin: -4% 0 30px 0;
 }
 </style>
