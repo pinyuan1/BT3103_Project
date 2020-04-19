@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id='home'>
     <h1> {{message}} </h1>
     <button><router-link to="/add" exact v-html="create"></router-link></button>
     <table>
@@ -7,6 +7,7 @@
           <th><h2 class="header">Category</h2></th>
           <th><h2 class="header">Name</h2></th>
           <th><h2 class="header">Deadline</h2></th>
+          <h2>{{this.$store.state.username}}</h2>
         </tr>
         <tr v-for="(task, index) in tasksList" v-bind:key="task.id" >
             <td><h2>{{task.Category}} </h2><td>
@@ -21,18 +22,24 @@
 <script>
 import database from '../firebase.js'
 export default {
+  name: 'home',
   data(){
     return{
         message: 'Tasks',
         create: '&plus; New',
-        tasksList: [],
-        }
+        tasksList: []
+      }
   },
+  // props: {
+  //   username: {
+  //     type: String,
+  //   }
+  // },
   methods:{
     fetchItems:function(){
       let task={}
       //Get all the items from DB
-      database.collection('tasks').orderBy('Deadline').get().then((querySnapShot)=>{
+      database.collection('tasks').where('Username','==',this.$store.state.username).orderBy('Deadline').get().then((querySnapShot)=>{
         //Loop through each item
         querySnapShot.forEach(doc=>{
             //console.log(doc.id+"==>"+doc.data())
