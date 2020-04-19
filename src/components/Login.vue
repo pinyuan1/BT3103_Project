@@ -84,7 +84,7 @@ export default {
 					if(this.user.name==databaseUser.name && this.user.password==databaseUser.password) {
 						this.$store.state.username=this.user.name;
 						alert("Login is successful! Have a wonderful experience with 404!");
-						this.$router.push({path:'/'});
+						this.$router.push({path:'/home'});
 						successful=true;
 					}
 				})
