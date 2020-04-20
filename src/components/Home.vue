@@ -7,7 +7,6 @@
           <th><h2 class="header">Category</h2></th>
           <th><h2 class="header">Name</h2></th>
           <th><h2 class="header">Deadline</h2></th>
-          <h2>{{this.$store.state.username}}</h2>
         </tr>
         <tr v-for="(task, index) in tasksList" v-bind:key="task.id" >
             <td><h2>{{task.Category}} </h2><td>

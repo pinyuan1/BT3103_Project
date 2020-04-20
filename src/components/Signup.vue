@@ -68,24 +68,27 @@ export default {
 		addUser: function() {
 			let same=true;
 			let exist=false;
-			if (this.user.password!=this.confirm.confirmedPassword) {
+			if (this.user.name==''||this.user.password=='') {
+				alert("Please do not leave Username or Password blank.")
+			} else if (this.user.password!=this.confirm.confirmedPassword) {
 				alert("Password and Confirm Password must be the same");
 				same=false;
-			}
-			database.collection('password-file').get().then((querySnapShot)=>{
-				let databaseUser={}
-				querySnapShot.forEach(doc=>{
-					databaseUser=doc.data()
-					if(this.user.name==databaseUser.name) {
-						alert("This username has already been registered. Please use a new username.");
-						exist=true;
-						this.$router.push({path:'/signup'});
+			} else {
+				database.collection('password-file').get().then((querySnapShot)=>{
+					let databaseUser={}
+					querySnapShot.forEach(doc=>{
+						databaseUser=doc.data()
+						if(this.user.name==databaseUser.name) {
+							alert("This username has already been registered. Please use a new username.");
+							exist=true;
+							this.$router.push({path:'/signup'});
+						}
+					})
+					if (same==true&&exist==false) {
+						this.createAccount();
 					}
-				})
-				if (same==true&&exist==false) {
-					this.createAccount();
-				}
-			});
+				});
+			}
 		},
 		createAccount: function() {
 			this.$store.state.username=this.user.name;
