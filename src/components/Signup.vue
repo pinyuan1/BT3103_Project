@@ -25,7 +25,7 @@
 	</form>
 </div>
 <div class="login">
-		<router-link id="loginline" to='/login'>Already have an account? Log in here</router-link>
+		<router-link id="loginline" to='/'>Already have an account? Log in here</router-link>
 	</div>
 <div class="copy-rights">
 		<p>Copyright &copy; 2020. 404 Studio All rights reserved</p>
@@ -81,7 +81,7 @@ export default {
 						if(this.user.name==databaseUser.name) {
 							alert("This username has already been registered. Please use a new username.");
 							exist=true;
-							this.$router.push({path:'/signup'});
+							this.$router.push({path:'/'});
 						}
 					})
 					if (same==true&&exist==false) {
