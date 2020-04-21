@@ -1,74 +1,64 @@
 import {Bar} from 'vue-chartjs'
+import database from './firebase.js'
+
 export default{
     extends:Bar,
-    data: () => ({
-        chartdata: {
-          labels: ['January', 'February','March','April'],
-          datasets: [
-            {
-                label: 'Acedemic',
-                data: [100, 150, 450, 500],
-                backgroundColor:['aqua','aqua','aqua','aqua'],
-                borderWidth:0.5,
-                fill: false
-              },
-              {
-                  label: 'Work',
-                  data: [80, 120, 140, 130],
-                  backgroundColor:['lightgreen','lightgreen','lightgreen','lightgreen'],
-                  borderWidth:0.5,
-                  fill: false
-              },
-              {
-                  label: 'CCA',
-                  data: [50, 40, 30, 10],
-                  backgroundColor:['red','red','red','red'],
-                  borderWidth:0.5,
-                  fill: false
+    data: function () {
+        return {
+            datacollection: {
+                labels: [],
+                datasets: [{
+                   label: "Numbers of Deadlines",
+                    backgroundColor: 'orange',
+                    borderWidth: 10,
+                    data: [],
+                    fill: true
+                  }],
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                  display: true,
+                  text: 'Numbers of Deadlines of Each User',
+                  fontColor: 'Black',
+                  fontSize: 19
                 },
-              {
-                  label: 'Others',
-                  data: [50, 30, 15, 5],
-                  backgroundColor:['orange','orange','orange','orange'],
-                  borderWidth:0.5,
-                  fill: false
-                }
-            ]
-        },
-        
-        options: {
-            title:{
-                display:true,
-                text:'Deadlines in Different Months',
-                fontColor:'Black',
-                fontSize:15
-
-            },
-            legend:{
-                position:'bottom'
-            },
-            layout:{
-                padding:{
-                    left: 5,
-                    right: 0,
-                    top: 0,
-                    bottom: 5
-                }
-            },
-            scales:{
-                xAxes: [{stacked: true,}],
-                yAxes:[{
+                scales: {
+                  yAxes: [{
                     ticks:{
-                        min:0
-                    },
-                    stacked: true
-
-                }]
+                      min: 0
+                    }
+                  }]
+                },
+                responsive: true,
+                maintainAspectRatio: false
             }
-          
         }
-      }),
-    mounted(){
-        this.renderChart(this.chartdata,this.options)
+      },
+      
+      methods:{
+        fetchItems:function(){
+          let taskDict = {};
+          let numOfTask = '';
+          database.collection('tasks').get().then((querySnapShot)=>{
+            querySnapShot.forEach(doc=>{
+              if(doc.data().Username in taskDict) {
+                numOfTask = taskDict[doc.data().Username]; 
+                taskDict[doc.data().Username] = numOfTask + 1;
+              } else {
+                taskDict[doc.data().Username] = 1;
+              }
+            })
+          for (let user in taskDict) {
+            this.datacollection.labels.push(user);
+            this.datacollection.datasets[0].data.push(taskDict[user]);
+          }
+          this.renderChart(this.datacollection, this.options)
+        })
+      }
+  },
+
+    created () {
+      this.fetchItems()
     }
-}
+  }
