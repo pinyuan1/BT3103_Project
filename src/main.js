@@ -5,7 +5,6 @@ import Routes from './routes.js'
 import store from './store'
 
 
-import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
