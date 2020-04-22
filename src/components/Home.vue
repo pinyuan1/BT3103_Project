@@ -23,6 +23,7 @@
     </div>
 
   <div>
+
     <h1> {{message}} </h1>
     <button><router-link to="/add" exact v-html="create"></router-link></button>
     <table>
@@ -45,6 +46,7 @@
 <script>
 import database from '../firebase.js'
 export default {
+  name: 'home',
   data(){
     return{
 
@@ -57,11 +59,16 @@ export default {
         tasksList: [],
         }
   },
+  // props: {
+  //   username: {
+  //     type: String,
+  //   }
+  // },
   methods:{
     fetchItems:function(){
       let task={}
       //Get all the items from DB
-      database.collection('tasks').orderBy('Deadline').get().then((querySnapShot)=>{
+      database.collection('tasks').where('Username','==',this.$store.state.username).orderBy('Deadline').get().then((querySnapShot)=>{
         //Loop through each item
         querySnapShot.forEach(doc=>{
             //console.log(doc.id+"==>"+doc.data())
