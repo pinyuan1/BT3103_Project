@@ -4,7 +4,6 @@ import VueResource from 'vue-resource'
 import Routes from './routes.js'
 import store from './store'
 
-
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -15,10 +14,6 @@ Vue.use(VueResource)
 //   },
 // });
 
-
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
-Vue.use(VueResource)
 Vue.config.productionTip = false
 
 const myRouter = new VueRouter({
