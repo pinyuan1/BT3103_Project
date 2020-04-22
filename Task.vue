@@ -81,7 +81,6 @@ export default {
     }
 }
 </script>
-
 <style scoped>
 table {
   color:#6B7A8F;

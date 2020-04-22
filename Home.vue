@@ -2,8 +2,7 @@
   <div class='home'>
     <h1> {{message}} </h1>
     <button class="btn"><router-link to="/add" exact v-html="create"></router-link></button>
-     <div class="tasks">
-   <table>
+    <table>
   <tr>
     <th>Category</th>
     <th>Name</th> 
@@ -17,11 +16,6 @@
   </tr>
 
 </table>
-
-
-</div>
-  
-
   </div>
 </template>
 
@@ -73,6 +67,7 @@ export default {
     }
 }
 </script>
+
 
 <style scoped>
 
@@ -144,5 +139,3 @@ th{
 }
 
 </style>
-
-

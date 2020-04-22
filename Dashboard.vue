@@ -30,11 +30,11 @@ export default {
     content:"";
     display:table;
     clear:both;
-
 }
 #chart{
   height:400px;
   width:400px;
+ 
   padding:30px;
   float:left;
 }
