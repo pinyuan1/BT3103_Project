@@ -16,7 +16,7 @@
   </tr>
    <tr v-for="(task) in tasksList" v-bind:key="task.id" >
     <th>Deadline: </th>
-    <th>{{task.Deadline.toDate().toString().substring(4,21)}}</th> 
+    <th>{{task.Deadline.toDate().toString().substring(4,15)}}</th> 
 
   </tr>
  <tr v-for="(task) in tasksList" v-bind:key="task.id" >
