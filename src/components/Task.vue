@@ -34,7 +34,6 @@
 </template>
 
  <script>
-
 // //import database from '../firebase.js'
 //  export default {
 //      data() {
@@ -43,8 +42,6 @@
 //         }
 //      }
 //  } 
-
-
 // </script>
 <script>
 import database from '../firebase.js'
@@ -61,7 +58,7 @@ export default {
     fetchItems:function(){
       let task={}
       //Get all the items from DB
-      database.collection('tasks').get().then((querySnapShot)=>{
+      database.collection('tasks').where('Username','==',this.$store.state.username).get().then((querySnapShot)=>{
         //Loop through each item
         querySnapShot.forEach(doc=>{
             //console.log(doc.id+"==>"+doc.data())
@@ -79,7 +76,6 @@ export default {
     }
     
   },
-
   created(){
       this.fetchItems()
     }
@@ -110,7 +106,6 @@ th{
  background:#f1dedb;
 
 }
-
 
 h1{
   font-size:40px;

@@ -1,5 +1,6 @@
 <template>
 <div>
+<!-- <home v-bind:username="user.name"></home> -->
 <head>
 <title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,26 +72,31 @@ export default {
 	},
 	methods:{
 		login: function() {
-			database.collection('password-file').get().then((querySnapShot)=>{
-				let databaseUser={}
-				let successful=false
-				querySnapShot.forEach(doc=>{
-					databaseUser=doc.data()
-					if(this.user.name==databaseUser.name && this.user.password==databaseUser.password) {
-						alert("Login is successful! Have a wonderful experience with 404!");
-						successful=true;
+			if (this.user.name==''||this.user.password=='') {
+				alert('Please do not leave Username or Password blank.');
+			} else {
+				database.collection('password-file').get().then((querySnapShot)=>{
+					let databaseUser={}
+					let successful=false
+					querySnapShot.forEach(doc=>{
+						databaseUser=doc.data()
+						if(this.user.name==databaseUser.name && this.user.password==databaseUser.password) {
+							this.$store.state.username=this.user.name;
+							alert("Login is successful! Have a wonderful experience with 404!");
+							this.$router.push({path:'/home'});
+							successful=true;
+						}
+					})
+					if (successful==false) {		
+						alert("Invalid username and password");			
 					}
-				})
-				if (successful==false) {
-					alert("Invalid username and password");
-				}
-			});
+				});
+			}
 		}
 	}
 }
 
 </script>
-
 <style>
 strong{
 	font-weight: 700;
