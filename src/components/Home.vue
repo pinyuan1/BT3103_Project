@@ -11,7 +11,7 @@
    <tr v-for="(task, index) in tasksList" v-bind:key="task.id" >
     <td>{{task.Category}}</td>
     <td><router-link :to="{path:'task/'+task.id}">{{task.Name}}</router-link></td> 
-    <td>{{task.Deadline.toDate().toString().substring(4,21)}} </td>
+    <td>{{task.Deadline.toDate().toString().substring(4,15)}} </td>
       <td><button class="btn" name="delete" v-bind:id="task.id" v-on:click="deleteItem(index,task)">Delete</button></td>
   </tr>
 
