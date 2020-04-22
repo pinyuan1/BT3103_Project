@@ -81,11 +81,10 @@ export default {
     }
 }
 </script>
-
 <style scoped>
 table {
   color:#6B7A8F;
-	font-size: 26px;
+	font-size: 24px;
 	line-height: 24px;
   padding: 0 20px;
 	margin: 30px auto;
@@ -106,7 +105,8 @@ th{
  background:#f1dedb;
 }
 h1{
-  font-size:40px;
+  font-size:36px;
+  font-family: Helvetica;
    position:relative; top:20px;
    position:relative; bottom:20px;
    color:#3a4660;

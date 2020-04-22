@@ -34,9 +34,7 @@ export default {
 #chart{
   height:400px;
   width:400px;
-  border-style: solid;
-  border-color:rgb(155, 84, 84);
-  border-width: 1px;
+ 
   padding:30px;
   float:left;
 }
