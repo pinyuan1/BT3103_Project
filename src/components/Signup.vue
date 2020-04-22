@@ -96,7 +96,7 @@ export default {
 			this.user.name="";
 			this.user.password="";
 			alert("User Account created successful! Have a wonderful experience with 404!");
-			this.$router.push({path:'/'});
+			this.$router.push({path:'/home'});
 		}
 	}
 }
