@@ -81,7 +81,7 @@ export default {
                 Name:this.task.Name,
                 Category:this.task.Category,
                 Description:this.task.Description,
-                Deadline:new Date(),
+                Deadline:new Date(this.task.Deadline),
                 Links:this.task.Links,
                 Username:this.$store.state.username
             });
