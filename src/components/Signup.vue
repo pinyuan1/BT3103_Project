@@ -4,7 +4,7 @@
 <title>Signup</title>
 </head>
 <body>
-<h1><strong>Create Your 404 Studio Account</strong></h1>
+<h1><strong>Create Your 404 scheduler Account</strong></h1>
 <div class="login-form">
   <div class="close"> </div>
 	<div class="head-info">
@@ -24,8 +24,8 @@
 		<button v-on:click.prevent="addUser">Signup</button>
 	</form>
 </div>
-<div class="copy-rights">
-		<p>Copyright &copy; 2020. 404 Studio All rights reserved</p>
+<div class="login">
+		<router-link id="loginline" to='/'>Already have an account? Log in here</router-link>
 	</div>
 </body>
     <div v-el:script_holder></div>
@@ -64,16 +64,36 @@ export default {
 		// }
 		addUser: function() {
 			let same=true;
-			if (this.user.password!=this.confirm.confirmedPassword) {
+			let exist=false;
+			if (this.user.name==''||this.user.password=='') {
+				alert("Please do not leave Username or Password blank.")
+			} else if (this.user.password!=this.confirm.confirmedPassword) {
 				alert("Password and Confirm Password must be the same");
 				same=false;
+			} else {
+				database.collection('password-file').get().then((querySnapShot)=>{
+					let databaseUser={}
+					querySnapShot.forEach(doc=>{
+						databaseUser=doc.data()
+						if(this.user.name==databaseUser.name) {
+							alert("This username has already been registered. Please use a new username.");
+							exist=true;
+							this.$router.push({path:'/'});
+						}
+					})
+					if (same==true&&exist==false) {
+						this.createAccount();
+					}
+				});
 			}
-			if (same==true) {
-				database.collection('password-file').doc().set(this.user);
-				this.user.name="";
-				this.user.password="";
-				alert("User Account created successful! Have a wonderful experience with 404!");
-			}
+		},
+		createAccount: function() {
+			this.$store.state.username=this.user.name;
+			database.collection('password-file').doc().set(this.user);
+			this.user.name="";
+			this.user.password="";
+			alert("User Account created successful! Have a wonderful experience with 404!");
+			this.$router.push({path:'/home'});
 		}
 	}
 }
@@ -81,10 +101,19 @@ export default {
 </script>
 
 <style scoped>
+.login{
+	font-size: 22px;
+	color: #3a4660;
+	margin: 1% 0 0px 0;
+	font-family: Helvetica;
+}
+a:visited {
+  color: #3a4660;
+}
 strong{
 	font-weight: 700;
 	font-size: 50px;
-	color: #d36562;
+	color: rgb(204, 132, 125);
 }
 
 /* reset */
@@ -112,14 +141,10 @@ img{max-width:100%;}
 /*end reset*/
 /****-----start-body----****/
 body{
-	background: no-repeat 0px 0px;
-	background-color: #d5cccc;
-	font-family: 'Open Sans', sans-serif;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	min-height:1050px;
+	background-color: #f1dedb;
+	font-family: Helvetica;
+	margin: -2% 0 0 0;
+	margin-bottom: 0em;
 }
 .wrap{
 	margin: 0 auto;
@@ -137,7 +162,7 @@ background: url('/assets/close.png') no-repeat 0px 0px;
   cursor: pointer;
   width: 20px;
   height: 20px;
-  position: absolute;
+  position: relative;
   left: 20px;
   top: 20px;
   -webkit-transition: color 0.2s ease-in-out;
@@ -157,6 +182,7 @@ h1 {
 }
 .login-form {
 	background: #1b2528;
+	
 	position: relative;
 	width: 30%;
 	margin: 3% auto 0 auto;
@@ -172,6 +198,7 @@ h1 {
 .avtar img {
   margin: 2em 0 0;
 }
+
 .head-info {
   padding: 5px 0;
   text-align: center;
@@ -299,33 +326,11 @@ label.lbl-3 {
 	border-radius: 50%;
 	margin: 16px 10px 0px 0px;
 }
+a:link { 
+  color: #3a4660;
+}
 /*--copyrights--*/
-.copy-rights{
-	text-align: center;
-	margin-top: 8em;
-}
-.copy-rights p{
-	color:#FFF;
-	font-size: 1em;
-	line-height:1.8em;
-}
-.copy-rights p a{
-	color:#ff2a75;
-	-webkit-transition: all 0.3s ease-out;
-	-moz-transition: all 0.3s ease-out;
-	-ms-transition: all 0.3s ease-out;
-	-o-transition: all 0.3s ease-out;
-	transition: all 0.3s ease-out;
-	text-decoration:none;
-}
-.copy-rights p a:hover{
-	color:#3faa53;
-	text-decoration:none;
-		transition: 0.1s all;
-	-webkit-transition: 0.1s all;
-	-moz-transition: 0.1s all;
-	-o-transition: 0.1s all;
-}
+
 /*--/copyrights--*/
 /*--start-responsive-design--*/
 @media (max-width:1440px){
@@ -334,16 +339,14 @@ label.lbl-3 {
 	}
 	
 	body {
-		min-height: 811px;
+		min-height: 760px;
 	}
 }
 @media (max-width:1366px){
 	.key {
 	background: url(/assets/pass.png) no-repeat 358px 19px;
 	}
-	.copy-rights {
-	margin-top: 3em;
-	}
+
 	body {
 	min-height: 768px;
 	}
@@ -355,9 +358,6 @@ label.lbl-3 {
 	body {
 		min-height: 711px;
 	}
-	.copy-rights {
-		margin-top: 0.5em;
-	}
 }
 @media (max-width:1024px){
 	.login-form {
@@ -366,9 +366,7 @@ label.lbl-3 {
 	.key {
 		background: url(/assets/pass.png) no-repeat 339px 18px;
 	}
-	.copy-rights {
-		margin-top: 3em;
-	}
+
 	h1 {
 		padding-top: 2em;
 	}
@@ -446,9 +444,6 @@ label.lbl-3 {
 	.close {
 		left: 16px;
 		top: 13px;
-	}
-	.copy-rights {
-		margin-top: 2em;
 	}
 	body {
 		min-height: 504px;
