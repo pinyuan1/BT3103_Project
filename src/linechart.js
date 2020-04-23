@@ -36,6 +36,13 @@ export default{
                       fill:false,
                       data: []
                     },
+                    {
+                      label: "Total", 
+                      borderColor:"grey",
+                      backgroundColor:'grey',
+                      fill:true,
+                      data: []
+                    },
                 ],
               },
               options: {
@@ -58,12 +65,11 @@ export default{
                     }
                 },
                 scales:{
-                    xAxes: [{stacked: true,}],
+                    xAxes: [],
                     yAxes:[{
                         ticks:{
                             min:0
                         },
-                        stacked: true
     
                     }]
                 }
@@ -107,6 +113,9 @@ export default{
             {"January": 0, "February" : 0, "March" : 0, "April":0,
             "May": 0, "June": 0, "July": 0, "August": 0, 
             "September": 0, "October": 0, "November": 0, "December": 0},
+            {"January": 0, "February" : 0, "March" : 0, "April":0,
+            "May": 0, "June": 0, "July": 0, "August": 0, 
+            "September": 0, "October": 0, "November": 0, "December": 0},
            ];
           let numOfTask = '';
           let thisM = ''
@@ -132,6 +141,9 @@ export default{
                 numOfTask = months[3][thisM]; 
                 months[3][thisM] = numOfTask + 1;
               }
+              thisM = this.getMonth(doc.data().Deadline)
+                numOfTask = months[4][thisM]; 
+                months[4][thisM] = numOfTask + 1;
             })
           for (let month in months[0]) {
             this.datacollection.labels.push(month);
@@ -145,6 +157,9 @@ export default{
           }
           for (let month in months[3]) {
             this.datacollection.datasets[3].data.push(months[3][month]);
+          }
+          for (let month in months[4]) {
+            this.datacollection.datasets[4].data.push(months[4][month]);
           }
           this.renderChart(this.datacollection, this.options)
         })
